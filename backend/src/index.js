@@ -5,6 +5,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth.route.js";
+import messageRoutes from "./routes/message.route.js";
 import { connectDB } from "./lib/db.js";
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/message", messageRoutes);
 
 app.listen(5001, () => {
   console.log("server is listening on PORT: ", process.env.PORT);

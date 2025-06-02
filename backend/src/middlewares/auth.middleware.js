@@ -18,7 +18,7 @@ export const protectRoute = async (req, res, next) => {
     }
 
     // find the user
-    const user = await User.findById(decoded.userId); // decoded.userId is the id of the user as we gave while storing it (in utils file)
+    const user = await User.findById(decoded.userId).select("-password"); // decoded.userId is the id of the user as we gave while storing it (in utils file) and we are not selecting the password as we don't want to send it to the client
     if (!user) {
       return res.status(404).json({ message: "User Not Found." });
     }
